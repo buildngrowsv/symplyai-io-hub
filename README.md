@@ -38,6 +38,8 @@ git push -u origin main
    - **Build command:** (empty)
    - **Build output directory:** `public`
 3. Save — first build deploys `public/` as the site.
+
+**Verified 2026-03-29:** If `https://symplyai-io-hub.pages.dev` shows “Deployment Not Found”, run `npx wrangler pages deploy public --project-name=symplyai-io-hub` from this directory (OAuth login required). That serves the hub on `*.pages.dev`; **apex `symplyai.io` still requires** adding **Custom domains** on the Pages project (see ops log `Github/ops-logs/dns/symplyai-io-cnames.md`).
 4. **Custom domains:** add `symplyai.io` and `www.symplyai.io`. Apply the DNS records Cloudflare shows (apex CNAME flatten + `www` CNAME to your `*.pages.dev` host).
 5. If you see **525** or SSL errors on the custom domain: in the zone **SSL/TLS** overview, use **Full (strict)** when the origin is Pages; remove conflicting legacy proxies or old apex records pointing at a dead origin.
 
