@@ -41,6 +41,15 @@ git push -u origin main
 4. **Custom domains:** add `symplyai.io` and `www.symplyai.io`. Apply the DNS records Cloudflare shows (apex CNAME flatten + `www` CNAME to your `*.pages.dev` host).
 5. If you see **525** or SSL errors on the custom domain: in the zone **SSL/TLS** overview, use **Full (strict)** when the origin is Pages; remove conflicting legacy proxies or old apex records pointing at a dead origin.
 
+### GoDaddy DNS vs Cloudflare nameservers (apex hub)
+
+Your internal ops log may show **product subdomains** on GoDaddy pointing at Vercel while **apex/`www`** are planned on **Cloudflare Pages**. Those only work together if you reconcile authority:
+
+- **If the zone uses Cloudflare nameservers:** add the Pages apex/`www` CNAMEs in Cloudflare (orange cloud) per the ops log; keep separate records for `*.symplyai.io` → Vercel as documented.
+- **If the zone is still on GoDaddy DNS only:** you cannot toggle “Proxied” in Cloudflare until the zone is on Cloudflare — use **Cloudflare Pages custom-domain instructions for third-party DNS** (often CNAME `www` + apex ALIAS/ANAME or the IPs Pages provides) until nameservers are migrated.
+
+Confirm in the registrar which nameservers are **actually** live before debugging 525.
+
 ## GitHub Actions (alternative to built-in Pages Git hook)
 
 This repo includes `.github/workflows/deploy-cloudflare-pages.yml`. Add secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. Each push to `main` or `master` runs `wrangler pages deploy public --project-name=symplyai-io-hub`.

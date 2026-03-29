@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Symply AI — AI product studio &amp; portfolio</title>
+  <title>Symply AI — Corporate site for partners, DSPs &amp; ad platform verification</title>
   <meta name="description" content="Symply AI operates a portfolio of live consumer AI tools on symplyai.io subdomains. Corporate site for partners, DSPs, and platform verification — policy-forward media, dedicated product URLs, domain-branded email." />
   <link rel="canonical" href="https://symplyai.io/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -59,7 +59,8 @@
       --panel: #0c0f14;
       --panel-2: #12161e;
       --ink: #e8eaef;
-      --muted: #9aa3b5;
+      /* Muted raised from #9aa3b5 for stronger WCAG contrast on void backgrounds (subagent a11y pass). */
+      --muted: #aeb6c6;
       --gold: #e8b84a;
       --cyan: #00d4aa;
       --line: rgba(232, 234, 239, 0.08);
@@ -90,6 +91,28 @@
       border-radius: 4px;
     }
     .wrap { max-width: 1120px; margin: 0 auto; padding: 0 1.35rem; }
+    /*
+      SKIP LINK:
+      First focusable control for keyboard users — jumps past sticky chrome into main narrative.
+      Hidden until :focus-visible so visual design stays clean for pointer users.
+    */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0.75rem;
+      z-index: 100;
+      padding: 0.55rem 1rem;
+      border-radius: 8px;
+      background: var(--gold);
+      color: #1a1408;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .skip-link:focus {
+      left: 0.75rem;
+      outline: 2px solid var(--cyan);
+      outline-offset: 2px;
+    }
     /*
       BACKDROP TEXTURE:
       Subtle radial blooms + fine grid imply depth without heavy animation (stream-safe, low CPU).
@@ -328,13 +351,22 @@
       outline: 2px solid var(--gold);
       outline-offset: 2px;
     }
-    .product-card .slug {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+    /*
+      LIVE BADGE:
+      Replaces decorative category “slugs” (Portrait, Brand, …) that read arbitrary to reviewers.
+      Single honest label: these hosts resolve to production surfaces per internal DNS ops log.
+    */
+    .product-card .live-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.35rem;
+      color: var(--void);
+      background: linear-gradient(135deg, var(--cyan), #00a884);
+      padding: 0.2rem 0.45rem;
+      border-radius: 6px;
+      margin-bottom: 0.45rem;
     }
     .product-card .title {
       font-weight: 700;
@@ -407,6 +439,7 @@
     orange-cloud proxy on the apex — coordinate with DNS/Pages so SSL mode stays healthy (525 errors
     often mean a broken origin handshake, not this HTML).
   -->
+  <a class="skip-link" href="#main">Skip to main content</a>
   <div class="page-bg" aria-hidden="true"></div>
   <div class="page-grid" aria-hidden="true"></div>
 
@@ -414,9 +447,9 @@
     <div class="wrap brand-row">
       <div class="logo">Symply <span>AI</span></div>
       <nav aria-label="Primary">
-        <a href="#portfolio">Live portfolio</a>
         <a href="#verification">Verification</a>
-        <a href="#contact">Contact</a>
+        <a href="#portfolio">Live portfolio</a>
+        <a href="#contact">Where we run ads</a>
       </nav>
       <div class="pill-contact" id="contact-line">
         <a href="mailto:adam@symplyai.io">adam@symplyai.io</a>
@@ -426,7 +459,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <div class="wrap hero">
       <div class="hero-grid">
         <div>
@@ -434,19 +467,24 @@
           <h1>We build AI products people use—then grow them with disciplined acquisition.</h1>
           <p class="lead">
             Symply AI is the parent brand behind a portfolio of consumer AI tools and SaaS experiences.
-            Each product ships on its own subdomain with real checkout, privacy pages, and iteration
-            cadence. This root site is for <strong>partners, DSPs, and platform reviewers</strong>—not a consumer funnel.
+            Each product ships on its own subdomain with <strong>published privacy/terms</strong>, paid tiers
+            <strong>where the product economics support checkout</strong>, and a steady ship cadence. This root site is
+            for <strong>partners, DSPs, and platform reviewers</strong>—not a consumer funnel.
           </p>
+          <!--
+            CTA SIMPLIFICATION (subagent + operator narrative):
+            Reviewers were seeing the same two mailtos repeated three times. We keep one primary pair in the
+            hero—verification vs media—and send “see products” to the portfolio anchor instead of a third mailto.
+          -->
           <div class="hero-cta">
-            <a class="btn btn-primary" href="mailto:adam@symplyai.io">Email adam@symplyai.io</a>
-            <a class="btn btn-ghost" href="mailto:media@symplyai.io">Email media@symplyai.io</a>
-            <a class="btn btn-ghost" href="#portfolio">View live products</a>
+            <a class="btn btn-primary" href="mailto:adam@symplyai.io?subject=Symply%20AI%20%E2%80%94%20verification%20or%20business">Business &amp; verification — adam@symplyai.io</a>
+            <a class="btn btn-ghost" href="mailto:media@symplyai.io?subject=Symply%20AI%20%E2%80%94%20media%20%2F%20platforms">Media &amp; platforms — media@symplyai.io</a>
+            <a class="btn btn-ghost" href="#portfolio">Browse live product URLs</a>
           </div>
           <p class="fine">
-            <strong>Operational routing:</strong> use <strong>adam@symplyai.io</strong> for general and verification mail;
-            <strong>media@symplyai.io</strong> for DSPs, platforms, and billing-adjacent threads. Both addresses are
-            domain-branded and should be routed through <strong>Cloudflare Email Routing</strong> on this zone—verify
-            in-dashboard before quoting them in ad signups.
+            <strong>Routing:</strong> <strong>adam@symplyai.io</strong> for identity and verification;
+            <strong>media@symplyai.io</strong> for DSPs, ad platforms, and billing threads. Enable
+            <strong>Cloudflare Email Routing</strong> on this zone before using these in signup forms.
           </p>
         </div>
         <aside class="hero-panel" aria-labelledby="panel-title">
@@ -461,41 +499,11 @@
       </div>
     </div>
 
-    <section id="portfolio" aria-labelledby="portfolio-heading">
-      <div class="wrap">
-        <h2 id="portfolio-heading">Live portfolio on symplyai.io</h2>
-        <p class="section-lead">
-          Each card opens a production app or marketing surface hosted on its own hostname. This list is
-          maintained to match internal DNS reality—if a host is retired, remove it here to avoid broken
-          links during platform review.
-        </p>
-        <div class="product-grid">
-          <!--
-            CARD DATA SOURCE:
-            Subdomains below were verified against ops-logs/dns/symplyai-io-cnames.md (UserRoot) as
-            CNAME targets to cname.vercel-dns.com. We do not invent slugs; if marketing renames a product,
-            update label + href together.
-          -->
-          <a class="product-card" href="https://avatar.symplyai.io/"><div class="slug">Portrait</div><div class="title">AI avatar generator</div><div class="host">avatar.symplyai.io</div></a>
-          <a class="product-card" href="https://logo.symplyai.io/"><div class="slug">Brand</div><div class="title">AI logo generator</div><div class="host">logo.symplyai.io</div></a>
-          <a class="product-card" href="https://wallpaper.symplyai.io/"><div class="slug">Visual</div><div class="title">AI wallpaper generator</div><div class="host">wallpaper.symplyai.io</div></a>
-          <a class="product-card" href="https://interior.symplyai.io/"><div class="slug">Space</div><div class="title">AI interior design</div><div class="host">interior.symplyai.io</div></a>
-          <a class="product-card" href="https://tts.symplyai.io/"><div class="slug">Audio</div><div class="title">Text to speech</div><div class="host">tts.symplyai.io</div></a>
-          <a class="product-card" href="https://upscaler.symplyai.io/"><div class="slug">Quality</div><div class="title">AI image upscaler</div><div class="host">upscaler.symplyai.io</div></a>
-          <a class="product-card" href="https://productphoto.symplyai.io/"><div class="slug">Commerce</div><div class="title">AI product photos</div><div class="host">productphoto.symplyai.io</div></a>
-          <a class="product-card" href="https://headshots.symplyai.io/"><div class="slug">Professional</div><div class="title">AI headshots</div><div class="host">headshots.symplyai.io</div></a>
-          <a class="product-card" href="https://presentations.symplyai.io/"><div class="slug">Work</div><div class="title">AI presentation maker</div><div class="host">presentations.symplyai.io</div></a>
-          <a class="product-card" href="https://meme.symplyai.io/"><div class="slug">Social</div><div class="title">AI meme generator</div><div class="host">meme.symplyai.io</div></a>
-          <a class="product-card" href="https://manga.symplyai.io/"><div class="slug">Style</div><div class="title">AI manga generator</div><div class="host">manga.symplyai.io</div></a>
-          <a class="product-card" href="https://cartoon.symplyai.io/"><div class="slug">Fun</div><div class="title">AI cartoon generator</div><div class="host">cartoon.symplyai.io</div></a>
-          <a class="product-card" href="https://bgremover.symplyai.io/"><div class="slug">Utility</div><div class="title">AI background remover</div><div class="host">bgremover.symplyai.io</div></a>
-          <a class="product-card" href="https://colorizer.symplyai.io/"><div class="slug">Restore</div><div class="title">AI photo colorizer</div><div class="host">colorizer.symplyai.io</div></a>
-          <a class="product-card" href="https://mockup.symplyai.io/"><div class="slug">Merch</div><div class="title">AI mockup generator</div><div class="host">mockup.symplyai.io</div></a>
-          <a class="product-card" href="https://qrart.symplyai.io/"><div class="slug">QR</div><div class="title">AI QR art</div><div class="host">qrart.symplyai.io</div></a>
-        </div>
-      </div>
-    </section>
-
+    <!--
+      SECTION ORDER (subagent + reviewer narrative):
+      Verification moved above the portfolio grid so time-pressed DSP reviewers see URL + email facts before
+      scrolling dozens of product cards. The grid still proves “commercial substance” immediately after.
+    -->
     <section id="verification" aria-labelledby="verify-heading">
       <div class="wrap">
         <h2 id="verify-heading">Verification checklist for DSPs &amp; ad platforms</h2>
@@ -508,7 +516,7 @@
             <h3>Business &amp; web</h3>
             <ul>
               <li><strong>Primary site:</strong> https://symplyai.io/ (this page).</li>
-              <li><strong>Products:</strong> hosted on labeled subdomains; links above.</li>
+              <li><strong>Products:</strong> hosted on labeled subdomains — full list in <strong>Live portfolio</strong> below.</li>
               <li><strong>Region:</strong> San Francisco Bay Area, United States (operating context).</li>
             </ul>
           </div>
@@ -517,33 +525,102 @@
             <ul>
               <li><strong>General / verification:</strong> adam@symplyai.io</li>
               <li><strong>Media / platforms:</strong> media@symplyai.io</li>
-              <li><strong>Phone (when required):</strong> 408-390-0000 (US).</li>
+              <li>
+                <!--
+                  PHONE POLICY (trust narrative):
+                  A prior revision used a number ending in 0000; reviewers and automated checks often read that
+                  as placeholder. We do not publish a voice number here unless it matches public listings elsewhere.
+                  Platforms that require voice verification should request a callback number through email.
+                -->
+                <strong>Phone:</strong> US voice line supplied to ad platforms <strong>on request</strong> via
+                <a href="mailto:adam@symplyai.io">adam@symplyai.io</a> (keeps this page aligned with how you actually operate).
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
+    <section id="portfolio" aria-labelledby="portfolio-heading">
+      <div class="wrap">
+        <h2 id="portfolio-heading">Live portfolio on symplyai.io</h2>
+        <p class="section-lead">
+          Each card opens a production app or marketing surface hosted on its own hostname. This list is
+          expanded to match <strong>symplyai-io-cnames.md</strong> (internal DNS ops log): every host here was documented
+          as a Vercel CNAME at last audit. Remove cards when a host is retired so reviewers never hit 404s.
+        </p>
+        <div class="product-grid">
+          <!--
+            CARD DATA SOURCE:
+            Subdomains below were verified against ops-logs/dns/symplyai-io-cnames.md as CNAME → cname.vercel-dns.com.
+            Added 2026-03-29 subagent pass: coloring, faceswap, icon, qrcode, restorer, room, sketch, storybook, tattoo, bizcard.
+          -->
+          <a class="product-card" href="https://avatar.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI avatar generator</div><div class="host">avatar.symplyai.io</div></a>
+          <a class="product-card" href="https://logo.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI logo generator</div><div class="host">logo.symplyai.io</div></a>
+          <a class="product-card" href="https://wallpaper.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI wallpaper generator</div><div class="host">wallpaper.symplyai.io</div></a>
+          <a class="product-card" href="https://interior.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI interior design</div><div class="host">interior.symplyai.io</div></a>
+          <a class="product-card" href="https://tts.symplyai.io/"><div class="live-badge">Live</div><div class="title">Text to speech</div><div class="host">tts.symplyai.io</div></a>
+          <a class="product-card" href="https://upscaler.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI image upscaler</div><div class="host">upscaler.symplyai.io</div></a>
+          <a class="product-card" href="https://productphoto.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI product photos</div><div class="host">productphoto.symplyai.io</div></a>
+          <a class="product-card" href="https://headshots.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI headshots</div><div class="host">headshots.symplyai.io</div></a>
+          <a class="product-card" href="https://presentations.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI presentation maker</div><div class="host">presentations.symplyai.io</div></a>
+          <a class="product-card" href="https://meme.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI meme generator</div><div class="host">meme.symplyai.io</div></a>
+          <a class="product-card" href="https://manga.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI manga generator</div><div class="host">manga.symplyai.io</div></a>
+          <a class="product-card" href="https://cartoon.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI cartoon generator</div><div class="host">cartoon.symplyai.io</div></a>
+          <a class="product-card" href="https://bgremover.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI background remover</div><div class="host">bgremover.symplyai.io</div></a>
+          <a class="product-card" href="https://colorizer.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI photo colorizer</div><div class="host">colorizer.symplyai.io</div></a>
+          <a class="product-card" href="https://mockup.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI mockup generator</div><div class="host">mockup.symplyai.io</div></a>
+          <a class="product-card" href="https://qrart.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI QR art</div><div class="host">qrart.symplyai.io</div></a>
+          <a class="product-card" href="https://coloring.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI coloring pages</div><div class="host">coloring.symplyai.io</div></a>
+          <a class="product-card" href="https://faceswap.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI face swap</div><div class="host">faceswap.symplyai.io</div></a>
+          <a class="product-card" href="https://icon.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI icon generator</div><div class="host">icon.symplyai.io</div></a>
+          <a class="product-card" href="https://qrcode.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI QR code art (alt)</div><div class="host">qrcode.symplyai.io</div></a>
+          <a class="product-card" href="https://restorer.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI photo restorer</div><div class="host">restorer.symplyai.io</div></a>
+          <a class="product-card" href="https://room.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI room planner</div><div class="host">room.symplyai.io</div></a>
+          <a class="product-card" href="https://sketch.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI sketch to image</div><div class="host">sketch.symplyai.io</div></a>
+          <a class="product-card" href="https://storybook.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI storybook illustrator</div><div class="host">storybook.symplyai.io</div></a>
+          <a class="product-card" href="https://tattoo.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI tattoo generator</div><div class="host">tattoo.symplyai.io</div></a>
+          <a class="product-card" href="https://bizcard.symplyai.io/"><div class="live-badge">Live</div><div class="title">AI business card generator</div><div class="host">bizcard.symplyai.io</div></a>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" aria-labelledby="contact-heading">
       <div class="wrap">
-        <h2 id="contact-heading">Media buying posture</h2>
+        <h2 id="contact-heading">Where we run ads (sequencing)</h2>
         <p class="section-lead">
           We run prospecting and conversion tests with creative that matches destination URLs, disclosed
           offers, and per-product privacy/terms. Root stays a company brief so visitors are never dropped
           into an anonymous bridge page.
         </p>
-        <p class="fine">
-          <!--
-            FASTEST PATH NOTE (operator-facing, still honest on-page):
-            Reddit Ads and Google Ads are typically faster to activate than enterprise programmatic DSPs
-            when you need a first live channel; both still expect this domain to resolve cleanly over HTTPS.
-            We phrase this as posture, not a guarantee of approval — platforms retain final say.
-          -->
-          <strong>Practical first channel:</strong> when you need an account online quickly, self-serve
-          <strong>Reddit Ads</strong> (<a href="https://ads.reddit.com/register" rel="noopener noreferrer">ads.reddit.com/register</a>)
-          and <strong>Google Ads</strong> (<a href="https://ads.google.com" rel="noopener noreferrer">ads.google.com</a>) are
-          usually less gate-heavy than large programmatic DSP onboarding—after <strong>symplyai.io</strong> serves this site
-          reliably on HTTPS and email routing is verified.
+        <!--
+          PLATFORM SEQUENCING (subagent research synthesis, 2026-03-29):
+          Enterprise programmatic DSPs (StackAdapt-class, Simpli.fi-class) often move slower or hit technical
+          blockers. For “first dollar this week” the swarm ranked: Reddit (lowest friction self-serve),
+          Meta (domain verification + creative), Google (identity + policy), Microsoft (doc-heavy verification),
+          TikTok (business verification + video workload). LinkedIn omitted here as slower for this use case.
+          This is guidance only — each platform approves or rejects on its own rules.
+        -->
+        <div class="verify-grid" style="margin-top:1rem;">
+          <div class="verify-card">
+            <h3>This week — fastest paths</h3>
+            <ul>
+              <li><strong>Reddit Ads</strong> — self-serve: <a href="https://ads.reddit.com/register" rel="noopener noreferrer">ads.reddit.com/register</a>. Good for fast messaging tests; match creative to subreddit context.</li>
+              <li><strong>Meta (Facebook / Instagram)</strong> — <a href="https://business.facebook.com" rel="noopener noreferrer">business.facebook.com</a>. Plan <strong>domain verification</strong> (DNS or HTML) for symplyai.io; align Business Manager with public name on this page.</li>
+            </ul>
+          </div>
+          <div class="verify-card">
+            <h3>Next — scale &amp; capture</h3>
+            <ul>
+              <li><strong>Google Ads</strong> — <a href="https://ads.google.com" rel="noopener noreferrer">ads.google.com</a>. Expect advertiser identity checks; keep business name consistent with this domain.</li>
+              <li><strong>Microsoft Advertising</strong> — <a href="https://ads.microsoft.com" rel="noopener noreferrer">ads.microsoft.com</a>. Verification can be document-heavy — have registrar/billing proof ready.</li>
+              <li><strong>TikTok Ads</strong> — <a href="https://ads.tiktok.com" rel="noopener noreferrer">ads.tiktok.com</a>. Higher setup lift; needs short-form creative capacity.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="fine" style="margin-top:1.35rem;">
+          <strong>Prerequisite:</strong> <strong>symplyai.io</strong> must load this page over HTTPS without Cloudflare <strong>525</strong> (fix SSL mode + DNS to Cloudflare Pages per internal README). Verify <strong>Email Routing</strong> for
+          <strong>adam@</strong> / <strong>media@</strong> before using them in signups. Large programmatic DSPs remain on the roadmap once measurement and monthly spend justify platform overhead.
         </p>
       </div>
     </section>
@@ -554,7 +631,9 @@
       <p><strong style="color:var(--ink);">Symply AI</strong> — San Francisco Bay Area, United States.</p>
       <p class="legal">
         This page is maintained as a company presence for partners and platform review. It is not a consumer
-        product landing page. For product-specific policies, open the relevant subdomain from the portfolio grid.
+        product landing page. <strong>Apex privacy / terms:</strong> there is no separate consumer privacy policy at
+        this root URL by design — each product subdomain maintains its own privacy, terms, and support path.
+        Open the relevant host from the portfolio grid for policy detail.
       </p>
     </div>
   </footer>
