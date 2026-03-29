@@ -2,6 +2,8 @@
 
 Corporate **root site** for **symplyai.io** — static HTML on **Cloudflare Pages**, deployed from **GitHub**. Built so ad platforms, DSPs, and partners can verify a real company, branded email on-domain, and **live product URLs** (subdomains documented in your internal DNS ops log).
 
+**Canonical Git remote:** [github.com/buildngrowsv/symplyai-io-hub](https://github.com/buildngrowsv/symplyai-io-hub)
+
 ## Why this is a separate repo
 
 Cloudflare’s **Connect to Git** flow expects a dedicated repository (or a monorepo with a root build — this project is simpler as its own repo). The parent `UserRoot` tree can keep a copy of these files for editing, but **GitHub + Pages** should track **this folder as the repo root**.
