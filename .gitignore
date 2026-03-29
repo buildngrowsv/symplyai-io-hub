@@ -1,0 +1,11 @@
+# Local Wrangler / OAuth state — never commit tokens or session files.
+.wrangler/
+.dev.vars
+.env
+.env.*
+
+# Optional npm install for wrangler preview only.
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+yarn.lock

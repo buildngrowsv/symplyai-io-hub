@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Symply AI — AI product studio &amp; portfolio</title>
+  <meta name="description" content="Symply AI operates a portfolio of live consumer AI tools on symplyai.io subdomains. Corporate site for partners, DSPs, and platform verification — policy-forward media, dedicated product URLs, domain-branded email." />
+  <link rel="canonical" href="https://symplyai.io/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!--
+    TYPOGRAPHY STORY:
+    We pair a sharp display face (Fraunces) with a geometric workhorse (Outfit) so the page reads
+    as a deliberate brand system — not a default “AI slop” stack. Fraunces carries authority on
+    headlines; Outfit keeps body copy legible at small sizes for accessibility and mobile review
+    flows (ad platform reviewers often check sites on phones).
+
+    FONT LOADING:
+    display=swap avoids invisible text during load; preconnect reduces connection latency.
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!--
+    STRUCTURED DATA FOR REVIEWERS + CRAWLERS:
+    Organization JSON-LD gives ad platforms and search a machine-readable anchor for “who is this
+    domain”. We only assert facts already present in visible copy (name, URL, contact emails, region).
+    Do not invent fields (tax IDs, fake ratings) — reviewers punish inconsistency between JSON-LD and UI.
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Symply AI",
+    "url": "https://symplyai.io/",
+    "description": "Portfolio operator of consumer AI tools and SaaS products with dedicated subdomains and policy-forward paid media.",
+    "email": "adam@symplyai.io",
+    "areaServed": "Worldwide",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "San Francisco Bay Area",
+      "addressRegion": "CA",
+      "addressCountry": "US"
+    }
+  }
+  </script>
+  <style>
+    /*
+      VISUAL SYSTEM (product + compliance narrative):
+      - Deep space background signals “engineering-led studio” without gimmicky gradients.
+      - Gold (#e8b84a) and cyan (#00d4aa) align with swarm broadcast branding so in-org screenshots
+        stay coherent across streams and this corporate surface.
+      - Large type and generous spacing help DSP reviewers skim under time pressure.
+
+      CONTRAST:
+      Body text stays off-pure-white on dark panels to reduce eye strain; WCAG-minded pairs use
+      #e8eaef on #0a0c10 for primary copy.
+    */
+    :root {
+      --void: #050608;
+      --panel: #0c0f14;
+      --panel-2: #12161e;
+      --ink: #e8eaef;
+      --muted: #9aa3b5;
+      --gold: #e8b84a;
+      --cyan: #00d4aa;
+      --line: rgba(232, 234, 239, 0.08);
+      --glow: rgba(0, 212, 170, 0.12);
+      --radius: 16px;
+      --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+      --font-body: "Outfit", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: var(--font-body);
+      background: var(--void);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    a {
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 1.35rem; }
+    /*
+      BACKDROP TEXTURE:
+      Subtle radial blooms + fine grid imply depth without heavy animation (stream-safe, low CPU).
+    */
+    .page-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(232, 184, 74, 0.14), transparent 55%),
+        radial-gradient(ellipse 70% 45% at 95% 10%, rgba(0, 212, 170, 0.1), transparent 50%),
+        var(--void);
+    }
+    .page-grid {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.07;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5, 6, 8, 0.82);
+      backdrop-filter: blur(14px);
+    }
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--gold); }
+    nav { display: flex; flex-wrap: wrap; gap: 0.65rem 1.1rem; align-items: center; }
+    nav a {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+    nav a:hover { color: var(--ink); }
+    .pill-contact {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--muted);
+    }
+    .pill-contact a { color: var(--ink); font-weight: 700; }
+    .hero { padding: 4rem 0 3rem; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    @media (min-width: 900px) {
+      .hero-grid { grid-template-columns: 1.15fr 0.85fr; gap: 3rem; }
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.35rem, 5vw, 3.75rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 0 0 1.1rem;
+      font-weight: 600;
+    }
+    .lead {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 36rem;
+      margin: 0 0 1.75rem;
+      line-height: 1.65;
+    }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1.35rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), #c99a2e);
+      color: #1a1408;
+    }
+    .btn-primary:hover { filter: brightness(1.06); text-decoration: none; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+    .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); text-decoration: none; }
+    .fine {
+      font-size: 0.82rem;
+      color: var(--muted);
+      max-width: 40rem;
+      line-height: 1.55;
+    }
+    .fine strong { color: var(--ink); }
+    /*
+      HERO SIDE PANEL:
+      Summarizes “why this page exists” for a reviewer scanning in 10 seconds — reduces back-and-forth
+      in platform tickets (“what is symplyai.io?”).
+    */
+    .hero-panel {
+      background: linear-gradient(160deg, var(--panel-2), var(--panel));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.35rem;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+    }
+    .hero-panel h2 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      margin: 0 0 1rem;
+      font-weight: 600;
+    }
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .checklist li {
+      display: flex;
+      gap: 0.65rem;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .checklist li span.tick {
+      flex-shrink: 0;
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 6px;
+      background: var(--glow);
+      border: 1px solid rgba(0, 212, 170, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cyan);
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+    section {
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--line);
+    }
+    section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.65rem, 3vw, 2.1rem);
+      margin: 0 0 0.75rem;
+      font-weight: 600;
+    }
+    .section-lead {
+      color: var(--muted);
+      max-width: 44rem;
+      margin: 0 0 2rem;
+      font-size: 1.02rem;
+    }
+    /*
+      PRODUCT GRID:
+      Each href was chosen from the internal DNS ops log (verified subdomains → Vercel) — we only link
+      hosts we know resolve to live product sites. If a subdomain is retired, update this list and the
+      ops log together so public claims stay true (ad reviewers spot dead links fast).
+
+      WHY LINK OUT FROM CORPORATE ROOT:
+      DSPs want proof of “commercial substance”. A grid of working product entry points is stronger
+      than prose alone — it shows the apex is not an empty parking page.
+    */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .product-card {
+      display: block;
+      padding: 1.15rem 1.1rem;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(12, 15, 20, 0.65);
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .product-card:hover {
+      border-color: rgba(0, 212, 170, 0.45);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+      text-decoration: none;
+    }
+    .product-card:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+    .product-card .slug {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.35rem;
+    }
+    .product-card .title {
+      font-weight: 700;
+      font-size: 1.02rem;
+      color: var(--ink);
+      margin-bottom: 0.35rem;
+    }
+    .product-card .host {
+      font-size: 0.82rem;
+      color: var(--muted);
+      word-break: break-all;
+    }
+    .verify-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    @media (min-width: 800px) {
+      .verify-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .verify-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.35rem 1.25rem;
+    }
+    .verify-card h3 {
+      margin: 0 0 0.65rem;
+      font-size: 1.05rem;
+      font-family: var(--font-display);
+      font-weight: 600;
+    }
+    .verify-card ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .verify-card li { margin-bottom: 0.45rem; }
+    footer {
+      padding: 2.5rem 0 3.5rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+    footer .legal {
+      max-width: 52rem;
+      line-height: 1.5;
+      margin-top: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <!--
+    CONTACT POLICY (security + longevity narrative):
+    This page intentionally lists ONLY @symplyai.io addresses. A prior revision exposed consumer Gmail
+    in mailto: links; scrapers and archive.org index those strings permanently, which the operator
+    wanted to stop.
+
+    DELIVERY PATH:
+    Cloudflare Email Routing on the symplyai.io zone forwards adam@ and media@ to a verified
+    destination mailbox configured only in the Cloudflare dashboard — never committed to git.
+
+    RUNBOOK POINTER:
+    Internal operators follow business-operations/.../EMAIL-ROUTING-RUNBOOK-symplyai-io.md for
+    dashboard steps and optional API scripts.
+
+    SCRAPE SHIELD (optional hardening):
+    Enabling Email Address Obfuscation in Cloudflare can rewrite mailto in proxied HTML; requires
+    orange-cloud proxy on the apex — coordinate with DNS/Pages so SSL mode stays healthy (525 errors
+    often mean a broken origin handshake, not this HTML).
+  -->
+  <div class="page-bg" aria-hidden="true"></div>
+  <div class="page-grid" aria-hidden="true"></div>
+
+  <header>
+    <div class="wrap brand-row">
+      <div class="logo">Symply <span>AI</span></div>
+      <nav aria-label="Primary">
+        <a href="#portfolio">Live portfolio</a>
+        <a href="#verification">Verification</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="pill-contact" id="contact-line">
+        <a href="mailto:adam@symplyai.io">adam@symplyai.io</a>
+        ·
+        <a href="mailto:media@symplyai.io">media@symplyai.io</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Corporate hub</div>
+          <h1>We build AI products people use—then grow them with disciplined acquisition.</h1>
+          <p class="lead">
+            Symply AI is the parent brand behind a portfolio of consumer AI tools and SaaS experiences.
+            Each product ships on its own subdomain with real checkout, privacy pages, and iteration
+            cadence. This root site is for <strong>partners, DSPs, and platform reviewers</strong>—not a consumer funnel.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="mailto:adam@symplyai.io">Email adam@symplyai.io</a>
+            <a class="btn btn-ghost" href="mailto:media@symplyai.io">Email media@symplyai.io</a>
+            <a class="btn btn-ghost" href="#portfolio">View live products</a>
+          </div>
+          <p class="fine">
+            <strong>Operational routing:</strong> use <strong>adam@symplyai.io</strong> for general and verification mail;
+            <strong>media@symplyai.io</strong> for DSPs, platforms, and billing-adjacent threads. Both addresses are
+            domain-branded and should be routed through <strong>Cloudflare Email Routing</strong> on this zone—verify
+            in-dashboard before quoting them in ad signups.
+          </p>
+        </div>
+        <aside class="hero-panel" aria-labelledby="panel-title">
+          <h2 id="panel-title">What reviewers see here</h2>
+          <ul class="checklist">
+            <li><span class="tick" aria-hidden="true">✓</span><span>A live corporate presence on <strong>symplyai.io</strong> (apex), not a parked domain.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span>Outbound links to <strong>working product surfaces</strong> on labeled subdomains.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span>Clear contact emails on the <strong>same registrable domain</strong> as the site.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span>Plain-language disclosure that ads run to <strong>dedicated URLs</strong> with policy-aligned creative.</span></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+
+    <section id="portfolio" aria-labelledby="portfolio-heading">
+      <div class="wrap">
+        <h2 id="portfolio-heading">Live portfolio on symplyai.io</h2>
+        <p class="section-lead">
+          Each card opens a production app or marketing surface hosted on its own hostname. This list is
+          maintained to match internal DNS reality—if a host is retired, remove it here to avoid broken
+          links during platform review.
+        </p>
+        <div class="product-grid">
+          <!--
+            CARD DATA SOURCE:
+            Subdomains below were verified against ops-logs/dns/symplyai-io-cnames.md (UserRoot) as
+            CNAME targets to cname.vercel-dns.com. We do not invent slugs; if marketing renames a product,
+            update label + href together.
+          -->
+          <a class="product-card" href="https://avatar.symplyai.io/"><div class="slug">Portrait</div><div class="title">AI avatar generator</div><div class="host">avatar.symplyai.io</div></a>
+          <a class="product-card" href="https://logo.symplyai.io/"><div class="slug">Brand</div><div class="title">AI logo generator</div><div class="host">logo.symplyai.io</div></a>
+          <a class="product-card" href="https://wallpaper.symplyai.io/"><div class="slug">Visual</div><div class="title">AI wallpaper generator</div><div class="host">wallpaper.symplyai.io</div></a>
+          <a class="product-card" href="https://interior.symplyai.io/"><div class="slug">Space</div><div class="title">AI interior design</div><div class="host">interior.symplyai.io</div></a>
+          <a class="product-card" href="https://tts.symplyai.io/"><div class="slug">Audio</div><div class="title">Text to speech</div><div class="host">tts.symplyai.io</div></a>
+          <a class="product-card" href="https://upscaler.symplyai.io/"><div class="slug">Quality</div><div class="title">AI image upscaler</div><div class="host">upscaler.symplyai.io</div></a>
+          <a class="product-card" href="https://productphoto.symplyai.io/"><div class="slug">Commerce</div><div class="title">AI product photos</div><div class="host">productphoto.symplyai.io</div></a>
+          <a class="product-card" href="https://headshots.symplyai.io/"><div class="slug">Professional</div><div class="title">AI headshots</div><div class="host">headshots.symplyai.io</div></a>
+          <a class="product-card" href="https://presentations.symplyai.io/"><div class="slug">Work</div><div class="title">AI presentation maker</div><div class="host">presentations.symplyai.io</div></a>
+          <a class="product-card" href="https://meme.symplyai.io/"><div class="slug">Social</div><div class="title">AI meme generator</div><div class="host">meme.symplyai.io</div></a>
+          <a class="product-card" href="https://manga.symplyai.io/"><div class="slug">Style</div><div class="title">AI manga generator</div><div class="host">manga.symplyai.io</div></a>
+          <a class="product-card" href="https://cartoon.symplyai.io/"><div class="slug">Fun</div><div class="title">AI cartoon generator</div><div class="host">cartoon.symplyai.io</div></a>
+          <a class="product-card" href="https://bgremover.symplyai.io/"><div class="slug">Utility</div><div class="title">AI background remover</div><div class="host">bgremover.symplyai.io</div></a>
+          <a class="product-card" href="https://colorizer.symplyai.io/"><div class="slug">Restore</div><div class="title">AI photo colorizer</div><div class="host">colorizer.symplyai.io</div></a>
+          <a class="product-card" href="https://mockup.symplyai.io/"><div class="slug">Merch</div><div class="title">AI mockup generator</div><div class="host">mockup.symplyai.io</div></a>
+          <a class="product-card" href="https://qrart.symplyai.io/"><div class="slug">QR</div><div class="title">AI QR art</div><div class="host">qrart.symplyai.io</div></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="verification" aria-labelledby="verify-heading">
+      <div class="wrap">
+        <h2 id="verify-heading">Verification checklist for DSPs &amp; ad platforms</h2>
+        <p class="section-lead">
+          Use this section as a quick crosswalk when a platform asks for business identity, site URL, and
+          contact email. Keep answers aligned with what is visible on-page—review systems flag mismatch.
+        </p>
+        <div class="verify-grid">
+          <div class="verify-card">
+            <h3>Business &amp; web</h3>
+            <ul>
+              <li><strong>Primary site:</strong> https://symplyai.io/ (this page).</li>
+              <li><strong>Products:</strong> hosted on labeled subdomains; links above.</li>
+              <li><strong>Region:</strong> San Francisco Bay Area, United States (operating context).</li>
+            </ul>
+          </div>
+          <div class="verify-card">
+            <h3>Contact &amp; voice</h3>
+            <ul>
+              <li><strong>General / verification:</strong> adam@symplyai.io</li>
+              <li><strong>Media / platforms:</strong> media@symplyai.io</li>
+              <li><strong>Phone (when required):</strong> 408-390-0000 (US).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-heading">
+      <div class="wrap">
+        <h2 id="contact-heading">Media buying posture</h2>
+        <p class="section-lead">
+          We run prospecting and conversion tests with creative that matches destination URLs, disclosed
+          offers, and per-product privacy/terms. Root stays a company brief so visitors are never dropped
+          into an anonymous bridge page.
+        </p>
+        <p class="fine">
+          <!--
+            FASTEST PATH NOTE (operator-facing, still honest on-page):
+            Reddit Ads and Google Ads are typically faster to activate than enterprise programmatic DSPs
+            when you need a first live channel; both still expect this domain to resolve cleanly over HTTPS.
+            We phrase this as posture, not a guarantee of approval — platforms retain final say.
+          -->
+          <strong>Practical first channel:</strong> when you need an account online quickly, self-serve
+          <strong>Reddit Ads</strong> (<a href="https://ads.reddit.com/register" rel="noopener noreferrer">ads.reddit.com/register</a>)
+          and <strong>Google Ads</strong> (<a href="https://ads.google.com" rel="noopener noreferrer">ads.google.com</a>) are
+          usually less gate-heavy than large programmatic DSP onboarding—after <strong>symplyai.io</strong> serves this site
+          reliably on HTTPS and email routing is verified.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong style="color:var(--ink);">Symply AI</strong> — San Francisco Bay Area, United States.</p>
+      <p class="legal">
+        This page is maintained as a company presence for partners and platform review. It is not a consumer
+        product landing page. For product-specific policies, open the relevant subdomain from the portfolio grid.
+      </p>
+    </div>
+  </footer>
+  <!--
+    SCRIPT POLICY:
+    We intentionally avoid client-side frameworks and third-party trackers on this corporate surface to
+    keep reviewer tooling simple and to prevent accidental leakage of alternate contact emails via dynamic
+    injection. If analytics are required later, prefer first-party, consent-aware tags and keep mailto
+    addresses on-domain only.
+  -->
+</body>
+</html>

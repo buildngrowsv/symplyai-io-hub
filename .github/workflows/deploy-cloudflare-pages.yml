@@ -1,0 +1,36 @@
+# -----------------------------------------------------------------------------
+# Cloudflare Pages — deploy static output from this repo on every push.
+#
+# Why this exists:
+# - symplyai.io is the "business root" reviewers open before approving ad accounts.
+# - Connecting Cloudflare Pages to GitHub gives automatic deploys on merge to main.
+#
+# Required GitHub repository secrets (Settings → Secrets → Actions):
+# - CLOUDFLARE_API_TOKEN — Create in Cloudflare dashboard with "Edit Cloudflare Workers"
+#   (includes Pages deploy permission for the account).
+# - CLOUDFLARE_ACCOUNT_ID — Dashboard → Workers & Pages → right sidebar, Account ID.
+#
+# After first deploy: attach custom domains symplyai.io + www in Pages → Custom domains
+# and ensure DNS CNAMEs match Cloudflare's targets (see README.md).
+# -----------------------------------------------------------------------------
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main, master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy static public/ to Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=symplyai-io-hub

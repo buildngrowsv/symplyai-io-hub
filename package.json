@@ -1,0 +1,12 @@
+{
+  "name": "symplyai-io-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Symply AI corporate hub — static Cloudflare Pages site for partner and ad-platform verification.",
+  "scripts": {
+    "preview": "wrangler pages dev public --port 7832 --compatibility-date=2024-01-01"
+  },
+  "devDependencies": {
+    "wrangler": "^3.114.0"
+  }
+}
