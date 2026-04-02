@@ -42,6 +42,27 @@
     }
   }
   </script>
+  <!--
+    QUANTCAST LIVE TAG:
+    This is the exact p-code captured from the active Quantcast tenant for Symply AI.
+    Keep the install close to the top of <head> so event collection starts early during DSP review flows.
+  -->
+  <script type="text/javascript">
+    window._qevents = window._qevents || [];
+    (function() {
+      var elem = document.createElement("script");
+      elem.src = (document.location.protocol === "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+      elem.async = true;
+      elem.type = "text/javascript";
+      var scpt = document.getElementsByTagName("script")[0];
+      scpt.parentNode.insertBefore(elem, scpt);
+    })();
+
+    window._qevents.push({
+      qacct: "p-DdUfMCJqfK9CV",
+      labels: "_fp.event.PageView"
+    });
+  </script>
   <style>
     /*
       VISUAL SYSTEM (product + compliance narrative):
