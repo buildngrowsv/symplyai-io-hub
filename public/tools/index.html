@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Tools Directory — Symply AI | 40+ Free AI Tools</title>
+  <meta name="description" content="Browse 40+ free AI tools by Symply AI. Image generation, photo editing, video creation, design tools, and more. All browser-based, no download required." />
+  <link rel="canonical" href="https://symplyai.io/tools/" />
+  <meta property="og:title" content="AI Tools Directory — Symply AI" />
+  <meta property="og:description" content="40+ free AI tools: image generation, photo editing, video, design, and more." />
+  <meta property="og:url" content="https://symplyai.io/tools/" />
+  <meta property="og:type" content="website" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PXQM62WFLF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PXQM62WFLF');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Outfit', system-ui, sans-serif;
+      background: #0a0a0f;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+    header { text-align: center; padding: 3rem 0 2rem; }
+    header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    header p { color: #94a3b8; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+    .back-link { color: #fbbf24; text-decoration: none; display: inline-block; margin-bottom: 1rem; }
+    .back-link:hover { text-decoration: underline; }
+    .categories { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+    .cat-pill {
+      padding: 0.4rem 1rem; border-radius: 999px; font-size: 0.85rem; cursor: pointer;
+      background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.2); color: #fbbf24;
+      transition: all 0.2s;
+    }
+    .cat-pill:hover, .cat-pill.active { background: rgba(251,191,36,0.25); border-color: #fbbf24; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(148,163,184,0.1);
+      border-radius: 12px;
+      padding: 1.25rem;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .card:hover { border-color: rgba(251,191,36,0.4); transform: translateY(-2px); }
+    .card h3 { font-size: 1.05rem; font-weight: 600; color: #f1f5f9; margin-bottom: 0.35rem; }
+    .card p { font-size: 0.88rem; color: #94a3b8; line-height: 1.5; }
+    .card .tag {
+      display: inline-block; margin-top: 0.6rem; padding: 0.2rem 0.6rem;
+      background: rgba(251,191,36,0.1); border-radius: 4px;
+      font-size: 0.75rem; color: #fbbf24;
+    }
+    .card .url { font-size: 0.78rem; color: #64748b; margin-top: 0.4rem; }
+    footer { text-align: center; padding: 3rem 0 2rem; color: #475569; font-size: 0.85rem; }
+    footer a { color: #fbbf24; text-decoration: none; }
+    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">&larr; Back to Symply AI</a>
+    <header>
+      <h1>AI Tools Directory</h1>
+      <p>40+ free AI-powered tools — all browser-based, no download required. From image generation to video creation, design, and beyond.</p>
+      <div class="categories" id="cats">
+        <span class="cat-pill active" data-cat="all">All Tools</span>
+        <span class="cat-pill" data-cat="image">Image</span>
+        <span class="cat-pill" data-cat="photo">Photo</span>
+        <span class="cat-pill" data-cat="video">Video</span>
+        <span class="cat-pill" data-cat="design">Design</span>
+        <span class="cat-pill" data-cat="text">Text & Audio</span>
+        <span class="cat-pill" data-cat="business">Business</span>
+      </div>
+    </header>
+    <div class="grid" id="grid"></div>
+    <footer>
+      <p>&copy; 2026 <a href="/">Symply AI</a> &mdash; All tools are free to try.</p>
+    </footer>
+  </div>
+  <script>
+    const tools = [
+      { name: "AI Logo Generator", desc: "Create professional logos from text prompts in seconds.", url: "https://generateailogo.com", cat: "design" },
+      { name: "AI Room Redesigner", desc: "Redesign any room with AI-powered interior design styles.", url: "https://airoomredesigner.com", cat: "design" },
+      { name: "AI Product Photo", desc: "Generate studio-quality product photos with AI backgrounds.", url: "https://aiproductphotomaker.com", cat: "photo" },
+      { name: "AI Manga Generator", desc: "Turn photos and prompts into manga-style artwork.", url: "https://mangaartai.com", cat: "image" },
+      { name: "Smart AI Upscaler", desc: "Upscale and enhance images up to 4x with AI.", url: "https://smartaiupscaler.com", cat: "photo" },
+      { name: "AI Background Remover", desc: "Remove image backgrounds instantly with AI segmentation.", url: "https://removebgapp.com", cat: "photo" },
+      { name: "GenFlix AI Video", desc: "Create cinematic AI videos from text with multiple models.", url: "https://genflix.symplyai.io", cat: "video" },
+      { name: "Bulk Image Generator", desc: "Generate multiple AI images at once from a single prompt.", url: "https://multipleimagegenerator.com", cat: "image" },
+      { name: "AI Cartoon Generator", desc: "Turn photos into cartoon-style illustrations.", url: "https://cartoon.symplyai.io", cat: "image" },
+      { name: "AI Hairstyle Generator", desc: "Try new hairstyles on your photo with AI.", url: "https://hairstyle.symplyai.io", cat: "photo" },
+      { name: "AI Tattoo Generator", desc: "Design custom tattoos with AI from text descriptions.", url: "https://tattoo.symplyai.io", cat: "design" },
+      { name: "AI Face Swap", desc: "Swap faces in photos using advanced AI face detection.", url: "https://faceswap.symplyai.io", cat: "photo" },
+      { name: "AI Meme Generator", desc: "Create memes with AI-generated images and captions.", url: "https://meme.symplyai.io", cat: "image" },
+      { name: "AI Wallpaper Generator", desc: "Generate stunning wallpapers for any device resolution.", url: "https://wallpaper.symplyai.io", cat: "image" },
+      { name: "AI Photo Colorizer", desc: "Add realistic color to black and white photos.", url: "https://colorizer.symplyai.io", cat: "photo" },
+      { name: "AI Photo Restorer", desc: "Restore and enhance old or damaged photographs.", url: "https://restorer.symplyai.io", cat: "photo" },
+      { name: "AI Sketch to Image", desc: "Turn rough sketches into polished AI artwork.", url: "https://sketch.symplyai.io", cat: "image" },
+      { name: "AI Storybook Illustrator", desc: "Generate children's book illustrations from text.", url: "https://storybook.symplyai.io", cat: "image" },
+      { name: "AI Coloring Page", desc: "Create printable coloring pages from any prompt.", url: "https://coloring.symplyai.io", cat: "image" },
+      { name: "AI Icon Generator", desc: "Design app icons and favicons with AI.", url: "https://icon.symplyai.io", cat: "design" },
+      { name: "AI Mockup Generator", desc: "Place designs on realistic product mockups.", url: "https://mockup.symplyai.io", cat: "design" },
+      { name: "AI Professional Headshots", desc: "Generate professional headshots from casual photos.", url: "https://headshots.symplyai.io", cat: "photo" },
+      { name: "AI QR Art Generator", desc: "Create artistic QR codes that actually scan.", url: "https://qrart.symplyai.io", cat: "design" },
+      { name: "AI Text to Speech", desc: "Convert text to natural-sounding speech with AI voices.", url: "https://tts.symplyai.io", cat: "text" },
+      { name: "AI Watercolor Generator", desc: "Transform photos into watercolor-style paintings.", url: "https://watercolor.symplyai.io", cat: "image" },
+      { name: "AI Yearbook Photo", desc: "Create retro yearbook-style photos with AI.", url: "https://yearbook.symplyai.io", cat: "photo" },
+      { name: "AI Birthday Card", desc: "Design personalized birthday cards with AI art.", url: "https://birthday.symplyai.io", cat: "design" },
+      { name: "AI Food Photography", desc: "Generate appetizing food photography from descriptions.", url: "https://food.symplyai.io", cat: "photo" },
+      { name: "AI Resume Photo", desc: "Create professional resume and LinkedIn photos.", url: "https://resumephoto.symplyai.io", cat: "photo" },
+      { name: "AI Anime Portrait", desc: "Transform photos into anime-style portraits.", url: "https://anime.symplyai.io", cat: "image" },
+      { name: "AI Outfit Generator", desc: "Visualize outfit combinations with AI styling.", url: "https://outfit.symplyai.io", cat: "design" },
+      { name: "AI Pet Portrait", desc: "Create artistic portraits of your pets.", url: "https://pet.symplyai.io", cat: "photo" },
+      { name: "AI Chart Generator", desc: "Create data visualizations and charts from text.", url: "https://charts.symplyai.io", cat: "business" },
+      { name: "AI Presentation Maker", desc: "Generate professional slide decks from text prompts.", url: "https://presentation.symplyai.io", cat: "business" },
+      { name: "AI Room Planner", desc: "Plan and visualize room layouts with AI assistance.", url: "https://room.symplyai.io", cat: "design" },
+      { name: "AI Avatar Generator", desc: "Create custom AI avatars for profiles and games.", url: "https://avatar.symplyai.io", cat: "image" },
+      { name: "AI Business Card", desc: "Design professional business cards with AI.", url: "https://bizcard.symplyai.io", cat: "business" },
+      { name: "AI Baby Generator", desc: "See what your future baby might look like with AI.", url: "https://baby.symplyai.io", cat: "photo" },
+      { name: "AI Animated Photo", desc: "Bring still photos to life with AI animation.", url: "https://animated.symplyai.io", cat: "video" },
+      { name: "AI QR Code Art", desc: "Create scannable artistic QR codes.", url: "https://qrcode.symplyai.io", cat: "design" },
+    ];
+
+    const grid = document.getElementById('grid');
+    const cats = document.getElementById('cats');
+
+    function render(filter) {
+      const filtered = filter === 'all' ? tools : tools.filter(t => t.cat === filter);
+      grid.innerHTML = filtered.map(t => `
+        <a href="${t.url}" class="card" target="_blank" rel="noopener" data-cat="${t.cat}">
+          <h3>${t.name}</h3>
+          <p>${t.desc}</p>
+          <span class="tag">${t.cat}</span>
+          <div class="url">${t.url.replace('https://', '')}</div>
+        </a>
+      `).join('');
+    }
+
+    cats.addEventListener('click', e => {
+      if (e.target.classList.contains('cat-pill')) {
+        cats.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+        e.target.classList.add('active');
+        render(e.target.dataset.cat);
+      }
+    });
+
+    render('all');
+  </script>
+</body>
+</html>
