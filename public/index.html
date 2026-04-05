@@ -407,6 +407,64 @@
       color: var(--muted);
       word-break: break-all;
     }
+    /*
+      FEATURED PRODUCT CARDS (Tier 1 revenue products — 2026-04-04):
+      Larger than the subdomain grid cards, with descriptions and a gold accent to signal flagship status.
+      These are the products we want crawlers and reviewers to weight most heavily from the hub.
+    */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+    .featured-card {
+      display: block;
+      padding: 1.5rem 1.35rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(232, 184, 74, 0.25);
+      background: linear-gradient(160deg, rgba(232, 184, 74, 0.06), rgba(12, 15, 20, 0.75));
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .featured-card:hover {
+      border-color: rgba(232, 184, 74, 0.55);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+      text-decoration: none;
+    }
+    .featured-card:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+    .featured-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #1a1408;
+      background: linear-gradient(135deg, var(--gold), #c99a2e);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      margin-bottom: 0.55rem;
+    }
+    .featured-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin-bottom: 0.45rem;
+    }
+    .featured-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 0.65rem;
+    }
+    .featured-host {
+      font-size: 0.82rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
     .verify-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -475,6 +533,7 @@
     <div class="wrap brand-row">
       <div class="logo">Symply <span>AI</span></div>
       <nav aria-label="Primary">
+        <a href="#products">Our Products</a>
         <a href="/tools/">All AI Tools</a>
         <a href="#verification">Verification</a>
         <a href="#portfolio">Live portfolio</a>
@@ -529,11 +588,49 @@
     </div>
 
     <!--
+      FEATURED PRODUCTS (SEO backlink section — 2026-04-04):
+      These are the Tier 1 revenue products that live on their own domains (not symplyai.io subdomains).
+      Linking from the hub homepage builds domain-authority backlinks from the corporate root to each
+      product's dedicated domain. Cards are intentionally larger and more descriptive than the subdomain
+      portfolio grid below — they are the flagship offerings we want reviewers and crawlers to prioritize.
+    -->
+    <section id=”products” aria-labelledby=”products-heading”>
+      <div class=”wrap”>
+        <div class=”eyebrow”>Flagship products</div>
+        <h2 id=”products-heading”>Our products</h2>
+        <p class=”section-lead”>
+          Standalone SaaS products built by Symply AI — each on its own domain with payments, accounts, and dedicated support.
+        </p>
+        <div class=”featured-grid”>
+          <a class=”featured-card” href=”https://banananano2pro.com” target=”_blank” rel=”noopener”>
+            <div class=”featured-badge”>Tier 1</div>
+            <div class=”featured-title”>AI Image &amp; Video Generator</div>
+            <div class=”featured-desc”>Batch create stunning visuals with AI. Text-to-image, image-to-video, and more — powered by state-of-the-art models.</div>
+            <div class=”featured-host”>banananano2pro.com</div>
+          </a>
+          <a class=”featured-card” href=”https://genflix.symplyai.io” target=”_blank” rel=”noopener”>
+            <div class=”featured-badge”>Tier 1</div>
+            <div class=”featured-title”>GenFlix AI Movie Studio</div>
+            <div class=”featured-desc”>Create cinematic videos from text. Script, scene, and soundtrack generation in one creative studio.</div>
+            <div class=”featured-host”>genflix.symplyai.io</div>
+          </a>
+          <a class=”featured-card” href=”https://usereachmix.com” target=”_blank” rel=”noopener”>
+            <div class=”featured-badge”>Tier 1</div>
+            <div class=”featured-title”>ReachMix</div>
+            <div class=”featured-desc”>AI App Store Translation &amp; Localization. Translate and optimize your app listings for every market — fast.</div>
+            <div class=”featured-host”>usereachmix.com</div>
+          </a>
+        </div>
+        <p style=”margin-top:1.5rem;”><a href=”/tools/” style=”font-size:1.05rem;”>Browse all 40+ AI tools &rarr;</a></p>
+      </div>
+    </section>
+
+    <!--
       SECTION ORDER (subagent + reviewer narrative):
       Verification moved above the portfolio grid so time-pressed DSP reviewers see URL + email facts before
       scrolling dozens of product cards. The grid still proves “commercial substance” immediately after.
     -->
-    <section id="verification" aria-labelledby="verify-heading">
+    <section id=”verification” aria-labelledby=”verify-heading”>
       <div class="wrap">
         <h2 id="verify-heading">Verification checklist for DSPs &amp; ad platforms</h2>
         <p class="section-lead">
