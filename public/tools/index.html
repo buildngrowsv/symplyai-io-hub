@@ -120,7 +120,56 @@
         <span class="cat-pill" data-cat="business">Business</span>
       </div>
     </header>
-    <div class="grid" id="grid"></div>
+    <!-- Server-rendered links for Googlebot. JS replaces this grid with
+         interactive cards on hydration. Without these static links, the
+         /tools/ page appears empty to crawlers that don't execute JS,
+         and even JS-capable crawlers may miss links in the initial parse.
+         Prism-4821, 2026-04-04: fixes "URL unknown to Google" for /tools/. -->
+    <div class="grid" id="grid">
+      <a href="https://banananano2pro.com" class="card flagship"><h3>Banananano2Pro</h3><p>Batch AI image &amp; video generation studio. From $4.90/mo.</p><span class="tag">★ flagship</span></a>
+      <a href="https://genflix.symplyai.io" class="card flagship"><h3>GenFlix AI Studio</h3><p>Text-to-video and image-to-video AI studio with Kling + Wan models.</p><span class="tag">★ flagship</span></a>
+      <a href="https://usereachmix.com" class="card flagship"><h3>ReachMix</h3><p>AI app store localization — translate metadata into 30+ languages.</p><span class="tag">★ flagship</span></a>
+      <a href="https://generateailogo.com" class="card"><h3>AI Logo Generator</h3><p>Create professional logos from text prompts in seconds.</p><span class="tag">design</span></a>
+      <a href="https://airoomredesigner.com" class="card"><h3>AI Room Redesigner</h3><p>Redesign any room with AI-powered interior design styles.</p><span class="tag">design</span></a>
+      <a href="https://aiproductphotomaker.com" class="card"><h3>AI Product Photo</h3><p>Generate studio-quality product photos with AI backgrounds.</p><span class="tag">photo</span></a>
+      <a href="https://mangaartai.com" class="card"><h3>AI Manga Generator</h3><p>Turn photos and prompts into manga-style artwork.</p><span class="tag">image</span></a>
+      <a href="https://smartaiupscaler.com" class="card"><h3>Smart AI Upscaler</h3><p>Upscale and enhance images up to 4x with AI.</p><span class="tag">photo</span></a>
+      <a href="https://removebgapp.com" class="card"><h3>AI Background Remover</h3><p>Remove image backgrounds instantly with AI.</p><span class="tag">photo</span></a>
+      <a href="https://multipleimagegenerator.com" class="card"><h3>Bulk Image Generator</h3><p>Generate multiple AI images at once from a single prompt.</p><span class="tag">image</span></a>
+      <a href="https://cartoon.symplyai.io" class="card"><h3>AI Cartoon Generator</h3><p>Turn photos into cartoon-style illustrations.</p><span class="tag">image</span></a>
+      <a href="https://hairstyle.symplyai.io" class="card"><h3>AI Hairstyle Generator</h3><p>Try new hairstyles on your photo with AI.</p><span class="tag">photo</span></a>
+      <a href="https://tattoo.symplyai.io" class="card"><h3>AI Tattoo Generator</h3><p>Design custom tattoos with AI from text descriptions.</p><span class="tag">design</span></a>
+      <a href="https://faceswap.symplyai.io" class="card"><h3>AI Face Swap</h3><p>Swap faces in photos using advanced AI face detection.</p><span class="tag">photo</span></a>
+      <a href="https://meme.symplyai.io" class="card"><h3>AI Meme Generator</h3><p>Create memes with AI-generated images and captions.</p><span class="tag">image</span></a>
+      <a href="https://wallpaper.symplyai.io" class="card"><h3>AI Wallpaper Generator</h3><p>Generate stunning wallpapers for any device resolution.</p><span class="tag">image</span></a>
+      <a href="https://colorizer.symplyai.io" class="card"><h3>AI Photo Colorizer</h3><p>Add realistic color to black and white photos.</p><span class="tag">photo</span></a>
+      <a href="https://restorer.symplyai.io" class="card"><h3>AI Photo Restorer</h3><p>Restore and enhance old or damaged photographs.</p><span class="tag">photo</span></a>
+      <a href="https://sketch.symplyai.io" class="card"><h3>AI Sketch to Image</h3><p>Turn rough sketches into polished AI artwork.</p><span class="tag">image</span></a>
+      <a href="https://tts.symplyai.io" class="card"><h3>AI Text to Speech</h3><p>Convert text to natural-sounding speech with AI voices.</p><span class="tag">text</span></a>
+      <a href="https://storybook.symplyai.io" class="card"><h3>AI Storybook Illustrator</h3><p>Generate children's book illustrations from text.</p><span class="tag">image</span></a>
+      <a href="https://coloring.symplyai.io" class="card"><h3>AI Coloring Page</h3><p>Create printable coloring pages from any prompt.</p><span class="tag">image</span></a>
+      <a href="https://icon.symplyai.io" class="card"><h3>AI Icon Generator</h3><p>Design app icons and favicons with AI.</p><span class="tag">design</span></a>
+      <a href="https://mockup.symplyai.io" class="card"><h3>AI Mockup Generator</h3><p>Place designs on realistic product mockups.</p><span class="tag">design</span></a>
+      <a href="https://qrart.symplyai.io" class="card"><h3>AI QR Art Generator</h3><p>Create artistic QR codes that actually scan.</p><span class="tag">design</span></a>
+      <a href="https://watercolor.symplyai.io" class="card"><h3>AI Watercolor Generator</h3><p>Transform photos into watercolor-style paintings.</p><span class="tag">image</span></a>
+      <a href="https://headshots.symplyai.io" class="card"><h3>AI Professional Headshots</h3><p>Generate professional headshots from casual photos.</p><span class="tag">photo</span></a>
+      <a href="https://anime.symplyai.io" class="card"><h3>AI Anime Portrait</h3><p>Transform photos into anime-style portraits.</p><span class="tag">image</span></a>
+      <a href="https://pet.symplyai.io" class="card"><h3>AI Pet Portrait</h3><p>Create artistic portraits of your pets.</p><span class="tag">photo</span></a>
+      <a href="https://charts.symplyai.io" class="card"><h3>AI Chart Generator</h3><p>Create data visualizations and charts from text.</p><span class="tag">business</span></a>
+      <a href="https://presentation.symplyai.io" class="card"><h3>AI Presentation Maker</h3><p>Generate professional slide decks from text prompts.</p><span class="tag">business</span></a>
+      <a href="https://room.symplyai.io" class="card"><h3>AI Room Planner</h3><p>Plan and visualize room layouts with AI.</p><span class="tag">design</span></a>
+      <a href="https://avatar.symplyai.io" class="card"><h3>AI Avatar Generator</h3><p>Create custom AI avatars for profiles and games.</p><span class="tag">image</span></a>
+      <a href="https://bizcard.symplyai.io" class="card"><h3>AI Business Card</h3><p>Design professional business cards with AI.</p><span class="tag">business</span></a>
+      <a href="https://baby.symplyai.io" class="card"><h3>AI Baby Generator</h3><p>See what your future baby might look like with AI.</p><span class="tag">photo</span></a>
+      <a href="https://animated.symplyai.io" class="card"><h3>AI Animated Photo</h3><p>Bring still photos to life with AI animation.</p><span class="tag">video</span></a>
+      <a href="https://qrcode.symplyai.io" class="card"><h3>AI QR Code Art</h3><p>Create scannable artistic QR codes.</p><span class="tag">design</span></a>
+      <a href="https://vector.symplyai.io" class="card"><h3>AI Vector Illustration</h3><p>Create scalable vector illustrations with AI.</p><span class="tag">design</span></a>
+      <a href="https://food.symplyai.io" class="card"><h3>AI Food Photography</h3><p>Generate appetizing food photography.</p><span class="tag">photo</span></a>
+      <a href="https://resumephoto.symplyai.io" class="card"><h3>AI Resume Photo</h3><p>Create professional resume and LinkedIn photos.</p><span class="tag">photo</span></a>
+      <a href="https://yearbook.symplyai.io" class="card"><h3>AI Yearbook Photo</h3><p>Create retro yearbook-style photos with AI.</p><span class="tag">photo</span></a>
+      <a href="https://outfit.symplyai.io" class="card"><h3>AI Outfit Generator</h3><p>Visualize outfit combinations with AI styling.</p><span class="tag">design</span></a>
+      <a href="https://birthday.symplyai.io" class="card"><h3>AI Birthday Card</h3><p>Design personalized birthday cards with AI art.</p><span class="tag">design</span></a>
+    </div>
     <footer>
       <p>&copy; 2026 <a href="/">Symply AI</a> &mdash; All tools are free to try.</p>
     </footer>
