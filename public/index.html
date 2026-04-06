@@ -6,10 +6,21 @@
   <title>Symply AI — Corporate site for partners, DSPs &amp; ad platform verification</title>
   <meta name="description" content="Symply AI operates a portfolio of live consumer AI tools on symplyai.io subdomains. Corporate site for partners, DSPs, and platform verification — policy-forward media, dedicated product URLs, domain-branded email." />
   <link rel="canonical" href="https://symplyai.io/" />
+  <!--
+    GA4 CONSENT MODE (GDPR / Gate 8 compliance):
+    Default to denied so no analytics cookies are set until the visitor explicitly accepts.
+    The cookie consent banner (injected at the end of <body>) calls
+    gtag('consent', 'update', { analytics_storage: 'granted' }) on Accept.
+  -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PXQM62WFLF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
     gtag('js', new Date());
     gtag('config', 'G-PXQM62WFLF');
   </script>
@@ -492,6 +503,101 @@
       font-size: 0.92rem;
     }
     .verify-card li { margin-bottom: 0.45rem; }
+    .capture-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    @media (min-width: 920px) {
+      .capture-grid {
+        grid-template-columns: 1fr 0.9fr;
+        gap: 2rem;
+      }
+    }
+    .capture-card {
+      background: linear-gradient(160deg, rgba(0, 212, 170, 0.08), rgba(12, 15, 20, 0.92));
+      border: 1px solid rgba(0, 212, 170, 0.22);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.35rem;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+    }
+    .capture-card h3 {
+      margin: 0 0 0.65rem;
+      font-size: 1.15rem;
+      font-family: var(--font-display);
+      font-weight: 600;
+    }
+    .capture-card .fine {
+      max-width: none;
+      margin: 0;
+    }
+    .capture-form {
+      display: grid;
+      gap: 0.9rem;
+    }
+    .field-group {
+      display: grid;
+      gap: 0.35rem;
+    }
+    .field-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .field-help {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin: 0;
+    }
+    .field-input,
+    .field-select {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(232, 234, 239, 0.12);
+      background: rgba(5, 6, 8, 0.92);
+      color: var(--ink);
+      padding: 0.8rem 0.9rem;
+      font: inherit;
+    }
+    .field-input::placeholder {
+      color: #7f8796;
+    }
+    .field-input:focus,
+    .field-select:focus {
+      outline: 2px solid var(--cyan);
+      outline-offset: 2px;
+      border-color: rgba(0, 212, 170, 0.45);
+    }
+    .checkbox-row {
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+    .checkbox-row input {
+      margin-top: 0.15rem;
+      accent-color: var(--cyan);
+    }
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .form-status {
+      min-height: 1.4rem;
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .form-status[data-state="success"] { color: var(--cyan); }
+    .form-status[data-state="error"] { color: #ff8f7d; }
+    .capture-list li {
+      margin-bottom: 0.9rem;
+    }
     footer {
       padding: 2.5rem 0 3.5rem;
       border-top: 1px solid var(--line);
@@ -534,6 +640,7 @@
       <div class="logo">Symply <span>AI</span></div>
       <nav aria-label="Primary">
         <a href="#products">Our Products</a>
+        <a href="#updates">Updates</a>
         <a href="/tools/">All AI Tools</a>
         <a href="#verification">Verification</a>
         <a href="#portfolio">Live portfolio</a>
@@ -587,6 +694,61 @@
       </div>
     </div>
 
+    <section id="updates" aria-labelledby="updates-heading">
+      <div class="wrap capture-grid">
+        <div>
+          <div class="eyebrow">Product updates</div>
+          <h2 id="updates-heading">Get the launch notes, product drops, and paid-media moves that matter.</h2>
+          <p class="section-lead">
+            This is the high-intent list for operators, partners, buyers, and curious builders who want
+            launch updates from the Symply AI portfolio without getting dragged into a noisy general
+            newsletter. We record source context so we know whether a signup came from partner outreach,
+            a product page, or a paid-media conversation.
+          </p>
+          <ul class="checklist capture-list">
+            <li><span class="tick" aria-hidden="true">✓</span><span><strong>High-signal sends only:</strong> launches, flagship product updates, notable experiments, and availability changes.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span><strong>Double opt-in first:</strong> we send a confirmation email before the submission becomes an active updates signup.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span><strong>Source-aware intake:</strong> UTM tags, referrer, page path, and declared interest travel with the lead payload so follow-up stays contextual.</span></li>
+          </ul>
+        </div>
+
+        <aside class="capture-card" aria-labelledby="capture-card-title">
+          <h3 id="capture-card-title">Join the Symply AI updates list</h3>
+          <form id="updates-form" class="capture-form" novalidate>
+            <div class="field-group">
+              <label class="field-label" for="updates-email">Work email</label>
+              <input class="field-input" id="updates-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@company.com" required />
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="updates-focus">Most relevant updates</label>
+              <select class="field-select" id="updates-focus" name="focus">
+                <option value="portfolio-launches">Portfolio launches and product drops</option>
+                <option value="paid-media">Paid media, DSP, and acquisition updates</option>
+                <option value="partnerships">Partnerships and operator notes</option>
+                <option value="all-updates">All of the above</option>
+              </select>
+              <p class="field-help">We use this to route the lead with the right source context on day one.</p>
+            </div>
+
+            <label class="checkbox-row" for="updates-consent">
+              <input id="updates-consent" name="consent" type="checkbox" required />
+              <span>I want Symply AI updates and understand I will receive a confirmation email before the address is treated as subscribed. Confirmed signups carry source metadata for follow-up.</span>
+            </label>
+
+            <input class="hp-field" id="updates-company" name="company" type="text" tabindex="-1" autocomplete="organization" />
+
+            <button class="btn btn-primary" type="submit">Join the updates list</button>
+            <p class="form-status" id="updates-status" role="status" aria-live="polite"></p>
+            <p class="fine">
+              Current operating mode: the form captures email, declared interest, referrer, UTM tags, and page context.
+              Delivery is driven by an environment-configured Resend confirmation plus an internal notification sink documented in this repo.
+            </p>
+          </form>
+        </aside>
+      </div>
+    </section>
+
     <!--
       FEATURED PRODUCTS (SEO backlink section — 2026-04-04):
       These are the Tier 1 revenue products that live on their own domains (not symplyai.io subdomains).
@@ -594,34 +756,34 @@
       product's dedicated domain. Cards are intentionally larger and more descriptive than the subdomain
       portfolio grid below — they are the flagship offerings we want reviewers and crawlers to prioritize.
     -->
-    <section id=”products” aria-labelledby=”products-heading”>
-      <div class=”wrap”>
-        <div class=”eyebrow”>Flagship products</div>
-        <h2 id=”products-heading”>Our products</h2>
-        <p class=”section-lead”>
+    <section id="products" aria-labelledby="products-heading">
+      <div class="wrap">
+        <div class="eyebrow">Flagship products</div>
+        <h2 id="products-heading">Our products</h2>
+        <p class="section-lead">
           Standalone SaaS products built by Symply AI — each on its own domain with payments, accounts, and dedicated support.
         </p>
-        <div class=”featured-grid”>
-          <a class=”featured-card” href=”https://banananano2pro.com” target=”_blank” rel=”noopener”>
-            <div class=”featured-badge”>Tier 1</div>
-            <div class=”featured-title”>AI Image &amp; Video Generator</div>
-            <div class=”featured-desc”>Batch create stunning visuals with AI. Text-to-image, image-to-video, and more — powered by state-of-the-art models.</div>
-            <div class=”featured-host”>banananano2pro.com</div>
+        <div class="featured-grid">
+          <a class="featured-card" href="https://banananano2pro.com" target="_blank" rel="noopener">
+            <div class="featured-badge">Tier 1</div>
+            <div class="featured-title">AI Image &amp; Video Generator</div>
+            <div class="featured-desc">Batch create stunning visuals with AI. Text-to-image, image-to-video, and more — powered by state-of-the-art models.</div>
+            <div class="featured-host">banananano2pro.com</div>
           </a>
-          <a class=”featured-card” href=”https://genflix.symplyai.io” target=”_blank” rel=”noopener”>
-            <div class=”featured-badge”>Tier 1</div>
-            <div class=”featured-title”>GenFlix AI Movie Studio</div>
-            <div class=”featured-desc”>Create cinematic videos from text. Script, scene, and soundtrack generation in one creative studio.</div>
-            <div class=”featured-host”>genflix.symplyai.io</div>
+          <a class="featured-card" href="https://genflix.symplyai.io" target="_blank" rel="noopener">
+            <div class="featured-badge">Tier 1</div>
+            <div class="featured-title">GenFlix AI Movie Studio</div>
+            <div class="featured-desc">Create cinematic videos from text. Script, scene, and soundtrack generation in one creative studio.</div>
+            <div class="featured-host">genflix.symplyai.io</div>
           </a>
-          <a class=”featured-card” href=”https://usereachmix.com” target=”_blank” rel=”noopener”>
-            <div class=”featured-badge”>Tier 1</div>
-            <div class=”featured-title”>ReachMix</div>
-            <div class=”featured-desc”>AI App Store Translation &amp; Localization. Translate and optimize your app listings for every market — fast.</div>
-            <div class=”featured-host”>usereachmix.com</div>
+          <a class="featured-card" href="https://usereachmix.com" target="_blank" rel="noopener">
+            <div class="featured-badge">Tier 1</div>
+            <div class="featured-title">ReachMix</div>
+            <div class="featured-desc">AI App Store Translation &amp; Localization. Translate and optimize your app listings for every market — fast.</div>
+            <div class="featured-host">usereachmix.com</div>
           </a>
         </div>
-        <p style=”margin-top:1.5rem;”><a href=”/tools/” style=”font-size:1.05rem;”>Browse all 40+ AI tools &rarr;</a></p>
+        <p style="margin-top:1.5rem;"><a href="/tools/" style="font-size:1.05rem;">Browse all 40+ AI tools &rarr;</a></p>
       </div>
     </section>
 
@@ -630,7 +792,7 @@
       Verification moved above the portfolio grid so time-pressed DSP reviewers see URL + email facts before
       scrolling dozens of product cards. The grid still proves “commercial substance” immediately after.
     -->
-    <section id=”verification” aria-labelledby=”verify-heading”>
+    <section id="verification" aria-labelledby="verify-heading">
       <div class="wrap">
         <h2 id="verify-heading">Verification checklist for DSPs &amp; ad platforms</h2>
         <p class="section-lead">
@@ -768,5 +930,130 @@
     This hub intentionally stays static and framework-free. GA4 is installed directly so the apex domain has
     first-party measurement for reviewer flows and traffic attribution without adding a client runtime.
   -->
+  <script>
+    (function () {
+      const form = document.getElementById("updates-form");
+      const statusNode = document.getElementById("updates-status");
+
+      if (!form || !statusNode) {
+        return;
+      }
+
+      const submitButton = form.querySelector('button[type="submit"]');
+
+      function setStatus(state, message) {
+        statusNode.dataset.state = state || "";
+        statusNode.textContent = message || "";
+      }
+
+      function getPayload() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+          email: form.elements.email.value.trim(),
+          focus: form.elements.focus.value,
+          consent: form.elements.consent.checked,
+          company: form.elements.company.value.trim(),
+          sourceContext: "symplyai-hub-updates-form",
+          pageUrl: window.location.href,
+          pagePath: window.location.pathname,
+          referrer: document.referrer || "",
+          submittedAt: new Date().toISOString(),
+          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "",
+          utmSource: params.get("utm_source") || "",
+          utmMedium: params.get("utm_medium") || "",
+          utmCampaign: params.get("utm_campaign") || "",
+          utmContent: params.get("utm_content") || "",
+          utmTerm: params.get("utm_term") || ""
+        };
+      }
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        if (!form.reportValidity()) {
+          return;
+        }
+
+        const payload = getPayload();
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
+        setStatus("", "Submitting your details...");
+
+        try {
+          const response = await fetch("/api/subscribe", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify(payload)
+          });
+
+          const result = await response.json().catch(function () {
+            return {};
+          });
+
+          if (!response.ok) {
+            throw new Error(result.error || "Signup is temporarily unavailable. Please email media@symplyai.io.");
+          }
+
+          form.reset();
+          setStatus("success", result.message || "Request captured.");
+
+          if (typeof window.gtag === "function") {
+            window.gtag("event", "generate_lead", {
+              source_context: "symplyai_hub_updates_form",
+              lead_interest: payload.focus
+            });
+          }
+        } catch (error) {
+          setStatus("error", error.message || "Signup failed. Please try again or email media@symplyai.io.");
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = "Join the updates list";
+        }
+      });
+    }());
+  </script>
+
+  <!--
+    COOKIE CONSENT BANNER (Gate 8 compliance):
+    Simple, GDPR-friendly banner. Analytics storage stays denied until Accept is clicked.
+    Choice is persisted in localStorage so the banner only appears once per browser.
+  -->
+  <div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(12,15,20,0.97);border-top:1px solid rgba(232,184,74,0.2);padding:1rem 1.5rem;font-family:var(--font-body,'Outfit',system-ui,sans-serif);font-size:0.9rem;color:#e8eaef;backdrop-filter:blur(8px);">
+    <div style="max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;">
+      <p style="margin:0;flex:1;min-width:260px;line-height:1.5;">
+        We use cookies for analytics (Google Analytics) to improve our tools. No tracking until you accept.
+        <a href="/privacy/" style="color:#00d4aa;text-decoration:underline;text-underline-offset:3px;">Privacy Policy</a>
+      </p>
+      <div style="display:flex;gap:0.5rem;">
+        <button id="cookie-reject" style="padding:0.5rem 1.2rem;border-radius:8px;border:1px solid rgba(232,234,239,0.15);background:transparent;color:#e8eaef;cursor:pointer;font-size:0.85rem;font-family:inherit;">Decline</button>
+        <button id="cookie-accept" style="padding:0.5rem 1.2rem;border-radius:8px;border:none;background:#e8b84a;color:#1a1408;cursor:pointer;font-weight:600;font-size:0.85rem;font-family:inherit;">Accept</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var stored = localStorage.getItem('symplyai_cookie_consent');
+      if (stored === 'accepted') {
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+        return;
+      }
+      if (stored === 'rejected') return;
+      var banner = document.getElementById('cookie-consent');
+      banner.style.display = 'block';
+      document.getElementById('cookie-accept').addEventListener('click', function() {
+        localStorage.setItem('symplyai_cookie_consent', 'accepted');
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+        banner.style.display = 'none';
+      });
+      document.getElementById('cookie-reject').addEventListener('click', function() {
+        localStorage.setItem('symplyai_cookie_consent', 'rejected');
+        banner.style.display = 'none';
+      });
+    })();
+  </script>
 </body>
 </html>

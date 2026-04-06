@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI Tools Directory — Symply AI | 40+ Free AI Tools</title>
-  <meta name="description" content="Browse 40+ free AI tools by Symply AI. Image generation, photo editing, video creation, design tools, and more. All browser-based, no download required." />
+  <title>AI Tools Directory — Symply AI | 45+ Free AI Tools</title>
+  <meta name="description" content="Browse 45+ free AI tools by Symply AI. Image generation, photo editing, video creation, design tools, and more. All browser-based, no download required." />
   <link rel="canonical" href="https://symplyai.io/tools/" />
-  <meta property="og:title" content="AI Tools Directory — Symply AI" />
-  <meta property="og:description" content="40+ free AI tools: image generation, photo editing, video, design, and more." />
+  <meta property="og:title" content="AI Tools Directory — Symply AI | 45+ Free AI Tools" />
+  <meta property="og:description" content="45+ free AI tools: image generation, photo editing, video, design, and more." />
   <meta property="og:url" content="https://symplyai.io/tools/" />
   <meta property="og:type" content="website" />
   <!-- JSON-LD ItemList schema — enables rich results for "AI tools" queries.
@@ -17,9 +17,9 @@
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": "AI Tools by SymplyAI",
-    "description": "Collection of 40+ AI-powered creative, design, and productivity tools by SymplyAI",
+    "description": "Collection of 45+ AI-powered creative, design, and productivity tools by SymplyAI",
     "url": "https://symplyai.io/tools",
-    "numberOfItems": 43,
+    "numberOfItems": 45,
     "itemListElement": [
       {"@type":"ListItem","position":1,"item":{"@type":"SoftwareApplication","name":"Banananano2Pro","url":"https://banananano2pro.com","applicationCategory":"MultimediaApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"Free tier with 10 credits. Plans from $4.90/mo."},"description":"Batch AI image and video generation studio for marketing teams."}},
       {"@type":"ListItem","position":2,"item":{"@type":"SoftwareApplication","name":"GenFlix","url":"https://genflix.symplyai.io","applicationCategory":"MultimediaApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"Free tier with 10 credits. Plans from $9.90/mo."},"description":"AI video studio for cinematic text-to-video and image-to-video creation."}},
@@ -29,10 +29,16 @@
     ]
   }
   </script>
+  <!-- GA4 consent mode: default denied until cookie banner Accept (Gate 8). -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PXQM62WFLF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
     gtag('js', new Date());
     gtag('config', 'G-PXQM62WFLF');
   </script>
@@ -108,7 +114,7 @@
     <a href="/" class="back-link">&larr; Back to Symply AI</a>
     <header>
       <h1>AI Tools Directory</h1>
-      <p>40+ free AI-powered tools — all browser-based, no download required. From image generation to video creation, design, and beyond.</p>
+      <p>45+ free AI-powered tools — all browser-based, no download required. From image generation to video creation, design, and beyond.</p>
       <div class="categories" id="cats">
         <span class="cat-pill active" data-cat="all">All Tools</span>
         <span class="cat-pill" data-cat="flagship">Flagship</span>
@@ -248,6 +254,41 @@
     });
 
     render('all');
+  </script>
+
+  <!-- Cookie consent banner (shared with homepage — Gate 8 compliance). -->
+  <div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(10,10,15,0.97);border-top:1px solid rgba(251,191,36,0.2);padding:1rem 1.5rem;font-family:'Outfit',system-ui,sans-serif;font-size:0.9rem;color:#e2e8f0;backdrop-filter:blur(8px);">
+    <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;">
+      <p style="margin:0;flex:1;min-width:260px;line-height:1.5;">
+        We use cookies for analytics (Google Analytics) to improve our tools.
+        <a href="/privacy/" style="color:#fbbf24;text-decoration:underline;">Privacy Policy</a>
+      </p>
+      <div style="display:flex;gap:0.5rem;">
+        <button id="cookie-reject" style="padding:0.5rem 1.2rem;border-radius:8px;border:1px solid rgba(148,163,184,0.2);background:transparent;color:#e2e8f0;cursor:pointer;font-size:0.85rem;font-family:inherit;">Decline</button>
+        <button id="cookie-accept" style="padding:0.5rem 1.2rem;border-radius:8px;border:none;background:#fbbf24;color:#1a1408;cursor:pointer;font-weight:600;font-size:0.85rem;font-family:inherit;">Accept</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var stored = localStorage.getItem('symplyai_cookie_consent');
+      if (stored === 'accepted') {
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+        return;
+      }
+      if (stored === 'rejected') return;
+      var banner = document.getElementById('cookie-consent');
+      banner.style.display = 'block';
+      document.getElementById('cookie-accept').addEventListener('click', function() {
+        localStorage.setItem('symplyai_cookie_consent', 'accepted');
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+        banner.style.display = 'none';
+      });
+      document.getElementById('cookie-reject').addEventListener('click', function() {
+        localStorage.setItem('symplyai_cookie_consent', 'rejected');
+        banner.style.display = 'none';
+      });
+    })();
   </script>
 </body>
 </html>
