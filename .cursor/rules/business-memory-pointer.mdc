@@ -1,0 +1,10 @@
+---
+description: Symply hub — canonical business memory repo pointer
+globs: "**/*"
+alwaysApply: true
+---
+
+# SymplyAI.io hub — business memory
+
+- **Business repo:** `Github/business-symplyai-io` (`buildngrowsv/business-symplyai-io`)
+- **Template:** `Github/business-operations/general-sops/BUSINESS-MEMORY-TREE-CURRENT-AND-TARGET-ARCHITECTURE.md` §1.2
