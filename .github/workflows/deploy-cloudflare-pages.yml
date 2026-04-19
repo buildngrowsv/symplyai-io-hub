@@ -1,36 +1,44 @@
-# -----------------------------------------------------------------------------
-# Cloudflare Pages — deploy static output from this repo on every push.
+# DEPRECATED 2026-04-19 — DO NOT RE-ENABLE
 #
-# Why this exists:
-# - symplyai.io is the "business root" reviewers open before approving ad accounts.
-# - Connecting Cloudflare Pages to GitHub gives automatic deploys on merge to main.
+# This workflow is intentionally a no-op. The repo `buildngrowsv/symplyai-io-hub` runs builds
+# and deploys from a developer/operator Mac only, effective 2026-04-19
+# (Operator amendment).
 #
-# Required GitHub repository secrets (Settings → Secrets → Actions):
-# - CLOUDFLARE_API_TOKEN — Create in Cloudflare dashboard with "Edit Cloudflare Workers"
-#   (includes Pages deploy permission for the account).
-# - CLOUDFLARE_ACCOUNT_ID — Dashboard → Workers & Pages → right sidebar, Account ID.
+# Background:
+#   The 2026-04-18 Vercel $743 build-minutes incident (5,667 deploys,
+#   35% failure rate) triggered the original ban on hosting-platform
+#   builds. The 2026-04-19 Operator amendment extended that ban to
+#   GitHub Actions for the same reasons (vendor-managed compute,
+#   secret blast radius, silent on-push side effects, and the swarm
+#   doesn't need it — local builds + artifact uploads are the canon).
 #
-# After first deploy: attach custom domains symplyai.io + www in Pages → Custom domains
-# and ensure DNS CNAMEs match Cloudflare's targets (see README.md).
-# -----------------------------------------------------------------------------
-name: Deploy to Cloudflare Pages
+# Canonical rules (read first if you are an agent thinking about
+# adding a workflow back):
+#   - UserRoot/.claude/rules/no-github-actions-build-discipline.md
+#   - UserRoot/.claude/rules/local-only-builds-no-github-actions.md
+#   - UserRoot/.claude/rules/no-platform-build-billing-discipline.md
+#
+# What to run instead:
+#   See the repo's DEPLOY-LOCAL-ONLY.md (or, if absent, the canonical
+#   one at Github/symplyai-platform/DEPLOY-LOCAL-ONLY.md).
+#
+# Trigger model:
+#   `workflow_dispatch:` ONLY. push / pull_request events do NOT
+#   trigger this workflow. If a human or agent manually fires it from
+#   the GH UI, the single `refuse` job exits 1.
+
+name: Deploy to Cloudflare Pages (DEPRECATED — local-only)
 
 on:
-  push:
-    branches: [main, master]
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  refuse:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Deploy static public/ to Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy public --project-name=symplyai-io-hub
+      - name: Refuse to run build/test/deploy in CI
+        run: |
+          echo "::error::Build/test/deploy are local-only for buildngrowsv/symplyai-io-hub (effective 2026-04-19)."
+          echo "::error::See DEPLOY-LOCAL-ONLY.md in this repo (or the platform-canonical one)."
+          echo "::error::Rule: UserRoot/.claude/rules/no-github-actions-build-discipline.md"
+          exit 1
